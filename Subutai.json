@@ -6,15 +6,15 @@
     "ssh-key": "lth", 
     "containers": [
         {
-            "hostname": "mate",
+            "hostname": "mist",
             "template": "debian-stretch",
-            "peer-criteria": "MATE-GROUP",
+            "peer-criteria": "MIST-GROUP",
             "size": "${containerSize}"
         }
     ],
     "peer-criteria": [
         {
-            "name": "MATE-GROUP",
+            "name": "MIST-GROUP",
             "max-price": "25"
         }
     ],
@@ -23,9 +23,9 @@
         "ansible-playbook": "all.json",
         "groups": [
             {
-                "name": "mate",
+                "name": "mist",
                 "hostnames": [
-                    "mate"
+                    "mist"
                 ]
             }
         ]
@@ -34,7 +34,7 @@
         "environmentName": {
             "description": "Enter the environment name",
             "type": "string",
-            "default": "wp",
+            "default": "mist",
             "validation": "[a-zA-Z0-9]+"
         },
         "containerSize": {

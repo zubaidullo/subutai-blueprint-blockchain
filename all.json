@@ -1,6 +1,6 @@
 [
     {
-        "hosts": "mate",
+        "hosts": "mist",
         "remote_user": "root",
         "tasks": [
             {
@@ -49,6 +49,14 @@
                     "update_cache": "yes"
                 }
             },
+            {
+                "name": "add ethereum repo",
+                "apt_repository": {
+                    "repo": "deb http://ppa.launchpad.net/ethereum/ethereum/ubuntu xenial main",
+                    "state": "present",
+                    "update_cache": "yes"
+                }
+            },            
             {
                 "name": "upgrade all",
                 "apt": {
