@@ -35,6 +35,13 @@
                 }
             },
             {
+                "name": "add mist repo key",
+                "apt_key": {
+                    "keyserver": "keyserver.ubuntu.com",
+                    "id": "1C52189C923F6CA9"
+                }
+            },
+            {
                 "name": "add x2go repo",
                 "apt_repository": {
                     "repo": "deb http://packages.x2go.org/debian stretch extras main",
