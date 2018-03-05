@@ -1,2 +1,2 @@
-# subutai-blueprint-mate
-Mate Desktop
+# subutai-blueprint-blockchain
+Blockchain Smartcontract Dev
