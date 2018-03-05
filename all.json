@@ -1,0 +1,116 @@
+[
+    {
+        "hosts": "mate",
+        "remote_user": "root",
+        "tasks": [
+            {
+                "name": "add x2go user",
+                "user": {
+                    "name": "x2go",
+                    "comment": "X2GO User",
+                    "group": "users",
+                    "generate_ssh_key": "yes",
+                    "shell": "/bin/bash"
+                }
+            },
+            {
+                "name": "install dirmngr",
+                "apt": {
+                    "name": "dirmngr",
+                    "allow_unauthenticated": "yes"
+                }
+            },
+            {
+                "name": "add x2go repo key",
+                "apt_key": {
+                    "keyserver": "keys.gnupg.net",
+                    "id": "E1F958385BFE2B6E"
+                }
+            },
+            {
+                "name": "add google repo key",
+                "apt_key": {
+                    "keyserver": "keyserver.ubuntu.com",
+                    "id": "1397BC53640DB551"
+                }
+            },
+            {
+                "name": "add x2go repo",
+                "apt_repository": {
+                    "repo": "deb http://packages.x2go.org/debian stretch extras main",
+                    "state": "present"
+                }
+            },
+            {
+                "name": "add google chrome repo",
+                "apt_repository": {
+                    "repo": "deb http://dl.google.com/linux/chrome/deb/ stable main",
+                    "state": "present",
+                    "update_cache": "yes"
+                }
+            },
+            {
+                "name": "upgrade all",
+                "apt": {
+                    "allow_unauthenticated": "yes",
+                    "update_cache": "yes",
+                    "upgrade": "yes"
+                }
+            },
+            {
+                "name": "install debs",
+                "apt": {
+                    "name": "{{ item }}",
+                    "state": "installed",
+                    "allow_unauthenticated": "yes"
+                },
+                "with_items": [
+                    "mate-desktop",
+                    "x2goserver",
+                    "mate-session-manager",
+                    "mate-applets",
+                    "mate-backgrounds",
+                    "mate-control-center",
+                    "mate-desktop-environment",
+                    "dconf-cli",
+                    "google-chrome-stable"
+                ]
+            },
+            {
+                "name": "copy check_wallpaper.sh",
+                "copy": {
+                    "src": "./files/check_wallpaper.sh",
+                    "dest": "/usr/local/bin",
+                    "mode": "755"
+                }
+            },
+            {
+                "name": "ensure local .config/autostart exists",
+                "file": {
+                    "path": "/home/x2go/.config/autostart",
+                    "recurse": "yes",
+                    "state": "directory",
+                    "owner": "x2go"
+                }
+            },
+            {
+                "name": "copy check_wallpaper.desktop",
+                "copy": {
+                    "src": "./files/check_wallpaper.desktop",
+                    "dest": "/home/x2go/.config/autostart",
+                    "owner": "x2go",
+                    "group": "users"
+                }
+            },
+            {
+                "name": "copy wallpaper.jpg",
+                "copy": {
+                    "src": "./files/wallpaper.jpg",
+                    "dest": "/home/x2go",
+                    "owner": "x2go",
+                    "group": "users"
+                }
+            }
+        ]
+    }
+]

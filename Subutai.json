@@ -1,0 +1,46 @@
+{
+    "name": "${environmentName}",
+    "description": "Mate Desktop",
+    "version": "0.0.3",
+    "author": "https://github.com/lbthomsen",
+    "containers": [
+        {
+            "hostname": "mate",
+            "template": "debian-stretch",
+            "peer-criteria": "MATE-GROUP",
+            "size": "${containerSize}"
+        }
+    ],
+    "peer-criteria": [
+        {
+            "name": "MATE-GROUP",
+            "max-price": "25"
+        }
+    ],
+    "ansible-configuration": {
+        "source-url": "https://github.com/lbthomsen/subutai-blueprint-mate/archive/master.zip",
+        "ansible-playbook": "all.json",
+        "groups": [
+            {
+                "name": "mate",
+                "hostnames": [
+                    "mate"
+                ]
+            }
+        ]
+    },
+    "user-variables": {
+        "environmentName": {
+            "description": "Enter the environment name",
+            "type": "string",
+            "default": "wp",
+            "validation": "[a-zA-Z0-9]+"
+        },
+        "containerSize": {
+            "description": "Container Size",
+            "type": "enum",
+            "default": "MEDIUM",
+            "validation": "MEDIUM,LARGE,HUGE"
+        }
+    }
+}
