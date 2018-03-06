@@ -43,13 +43,6 @@
                 }
             },
             {
-                "name": "add google repo key",
-                "apt_key": {
-                    "keyserver": "keyserver.ubuntu.com",
-                    "id": "1397BC53640DB551"
-                }
-            },
-            {
                 "name": "add mist repo key",
                 "apt_key": {
                     "keyserver": "keyserver.ubuntu.com",
@@ -101,12 +94,6 @@
                 }
             },
             {
-                "name": "install chrome",
-                "apt": {
-                    "deb": "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
-                }
-            },
-            {
                 "name": "install mist",
                 "apt": {
                     "deb": "https://github.com/ethereum/mist/releases/download/v0.9.3/Mist-linux64-0-9-3.deb"
@@ -132,7 +119,8 @@
                     "ethereum",
                     "nodejs",
                     "code", 
-                    "git"
+                    "git", 
+                    "firefox-esr"
                 ]
             },
             {
@@ -165,6 +153,15 @@
                 "name": "copy wallpaper.jpg",
                 "copy": {
                     "src": "./files/wallpaper.jpg",
+                    "dest": "/home/x2go",
+                    "owner": "x2go",
+                    "group": "users"
+                }
+            },
+            {
+                "name": "copy readme.html",
+                "copy": {
+                    "src": "./files/readme.html",
                     "dest": "/home/x2go",
                     "owner": "x2go",
                     "group": "users"
@@ -207,6 +204,18 @@
                 "npm": {
                     "name": "truffle@latest", 
                     "global": "yes"
+                }
+            }, 
+            {
+                "name":"fugly visual studio fix - grrrrrr", 
+                "command": "sed -i 's/BIG-REQUESTS/_IG-REQUESTS/' /usr/lib/x86_64-linux-gnu/libxcb.so.1"
+            }, 
+            {
+                "name": "fire up geth", 
+                "systemd": {
+                    "name": "geth", 
+                    "state": "started", 
+                    "daemon_reload": "yes"
                 }
             }
         ]
