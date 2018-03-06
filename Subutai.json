@@ -1,31 +1,37 @@
 {
     "name": "${environmentName}",
-    "description": "Blockchain Smartcontract Dev",
+    "description": "Blockchain in a Box",
     "version": "0.0.1",
     "author": "https://github.com/lbthomsen",
     "ssh-key": "lth", 
     "containers": [
         {
-            "hostname": "mist",
+            "hostname": "biab",
             "template": "debian-stretch",
-            "peer-criteria": "MIST-GROUP",
+            "peer-criteria": "BIAB-GROUP",
             "size": "${containerSize}"
         }
     ],
     "peer-criteria": [
         {
-            "name": "MIST-GROUP",
+            "name": "BIAB-GROUP",
             "max-price": "25"
         }
     ],
     "ansible-configuration": {
         "source-url": "https://github.com/lbthomsen/subutai-blueprint-blockchain/archive/master.zip",
         "ansible-playbook": "all.json",
+        "extra-vars": [
+            {
+                "key": "ethereum_network", 
+                "value": "${ethereumNetwork}"
+            }
+        ], 
         "groups": [
             {
-                "name": "mist",
+                "name": "biab",
                 "hostnames": [
-                    "mist"
+                    "biab"
                 ]
             }
         ]
@@ -42,6 +48,12 @@
             "type": "enum",
             "default": "LARGE",
             "validation": "MEDIUM,LARGE,HUGE"
+        }, 
+        "ethereumNetwork": {
+            "description": "Select ethereum network",
+            "type": "enum",
+            "default": "testnet",
+            "validation": "testnet,rinkeby"
         }
     }
 }

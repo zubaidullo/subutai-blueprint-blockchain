@@ -1,6 +1,6 @@
 [
     {
-        "hosts": "mist",
+        "hosts": "biab",
         "remote_user": "root",
         "tasks": [
             {
@@ -9,6 +9,7 @@
                     "name": "x2go",
                     "comment": "X2GO User",
                     "group": "users",
+                    "groups": "sudo", 
                     "generate_ssh_key": "yes",
                     "shell": "/bin/bash"
                 }
@@ -21,10 +22,24 @@
                 }
             },
             {
+                "name": "install apt-transport-https",
+                "apt": {
+                    "name": "apt-transport-https",
+                    "allow_unauthenticated": "yes"
+                }
+            },
+            {
                 "name": "add x2go repo key",
                 "apt_key": {
                     "keyserver": "keys.gnupg.net",
                     "id": "E1F958385BFE2B6E"
+                }
+            },
+            {
+                "name": "add node repo key",
+                "apt_key": {
+                    "keyserver": "keys.gnupg.net",
+                    "id": "1655A0AB68576280"
                 }
             },
             {
@@ -42,6 +57,13 @@
                 }
             },
             {
+                "name": "add microsoft repo key",
+                "apt_key": {
+                    "keyserver": "keyserver.ubuntu.com",
+                    "id": "EB3E94ADBE1229CF"
+                }
+            },
+            {
                 "name": "add x2go repo",
                 "apt_repository": {
                     "repo": "deb http://packages.x2go.org/debian stretch extras main",
@@ -49,27 +71,39 @@
                 }
             },
             {
-                "name": "add google chrome repo",
+                "name": "add node repo",
                 "apt_repository": {
-                    "repo": "deb http://dl.google.com/linux/chrome/deb/ stable main",
-                    "state": "present",
-                    "update_cache": "yes"
+                    "repo": "deb https://deb.nodesource.com/node_9.x stretch main",
+                    "state": "present"
                 }
             },
             {
                 "name": "add ethereum repo",
                 "apt_repository": {
                     "repo": "deb http://ppa.launchpad.net/ethereum/ethereum/ubuntu xenial main",
+                    "state": "present"
+                }
+            },
+            {
+                "name": "add visua studio repo",
+                "apt_repository": {
+                    "repo": "deb https://packages.microsoft.com/repos/vscode stable main",
                     "state": "present",
                     "update_cache": "yes"
                 }
-            },            
+            },
             {
                 "name": "upgrade all",
                 "apt": {
                     "allow_unauthenticated": "yes",
                     "update_cache": "yes",
                     "upgrade": "yes"
+                }
+            },
+            {
+                "name": "install chrome",
+                "apt": {
+                    "deb": "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
                 }
             },
             {
@@ -88,7 +122,10 @@
                     "mate-control-center",
                     "mate-desktop-environment",
                     "dconf-cli",
-                    "google-chrome-stable"
+                    "google-chrome-stable",
+                    "ethereum",
+                    "nodejs",
+                    "code"
                 ]
             },
             {
@@ -124,6 +161,38 @@
                     "dest": "/home/x2go",
                     "owner": "x2go",
                     "group": "users"
+                }
+            },
+            {
+                "name": "fix sudoers", 
+                "lineinfile": {
+                    "path": "/etc/sudoers", 
+                    "state": "present", 
+                    "regexp": "%sudo", 
+                    "line": "%sudo ALL=NOPASSWD: ALL"
+                }
+            }, 
+            {
+                "name": "copy geth.service",
+                "copy": {
+                    "src": "./files/geth.service",
+                    "dest": "/etc/systemd/system"
+                }
+            },
+            {
+                "name": "copy geth default",
+                "copy": {
+                    "src": "./files/geth.default",
+                    "dest": "/etc/default/geth"
+                }
+            },
+            {
+                "name": "set selected network",
+                "lineinfile": {
+                    "path": "/etc/default/geth",
+                    "regexp": "^NETWORK=",
+                    "line:": "NETWORK={{ethereum_network}}", 
+                    "state": "present"
                 }
             }
         ]

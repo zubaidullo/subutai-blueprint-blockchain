@@ -1,0 +1,14 @@
+[Unit]
+Description=Run Geth
+
+[Service]
+Type=simple
+EnvironmentFile=-/etc/default/geth
+ExecStart=/usr/bin/geth -${NETWORK} --syncmode fast --rpc --rpcport 8545 --rpcapi db,eth,net,web3,personal 
+Restart=on-failure
+User=x2go
+Group=users
+
+[Install]
+WantedBy=multi-user.target
+Alias=geth.service
