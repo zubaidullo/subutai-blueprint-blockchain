@@ -107,6 +107,12 @@
                 }
             },
             {
+                "name": "install mist",
+                "apt": {
+                    "deb": "https://github.com/ethereum/mist/releases/download/v0.9.3/Ethereum-Wallet-linux64-0-9-3.deb"
+                }
+            },
+            {
                 "name": "install debs",
                 "apt": {
                     "name": "{{ item }}",
@@ -125,7 +131,8 @@
                     "google-chrome-stable",
                     "ethereum",
                     "nodejs",
-                    "code"
+                    "code", 
+                    "git"
                 ]
             },
             {
@@ -168,7 +175,7 @@
                 "lineinfile": {
                     "path": "/etc/sudoers", 
                     "state": "present", 
-                    "regexp": "%sudo", 
+                    "regexp": "^%sudo", 
                     "line": "%sudo ALL=NOPASSWD: ALL"
                 }
             }, 
@@ -187,12 +194,19 @@
                 }
             },
             {
-                "name": "set selected network",
+                "name": "set network", 
                 "lineinfile": {
-                    "path": "/etc/default/geth",
-                    "regexp": "^NETWORK=",
-                    "line:": "NETWORK={{ethereum_network}}", 
-                    "state": "present"
+                    "path": "/etc/default/geth", 
+                    "state": "present", 
+                    "regexp": "^NETWORK=", 
+                    "line": "NETWORK={{ ethereum_network }}"
+                }
+            }, 
+            {
+                "name": "install truffle", 
+                "npm": {
+                    "name": "truffle@latest", 
+                    "global": "yes"
                 }
             }
         ]
