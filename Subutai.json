@@ -46,8 +46,8 @@
         "containerSize": {
             "description": "Container Size",
             "type": "enum",
-            "default": "LARGE",
-            "validation": "MEDIUM,LARGE,HUGE"
+            "default": "HUGE",
+            "validation": "LARGE,HUGE"
         }, 
         "ethereumNetwork": {
             "description": "Select ethereum network",

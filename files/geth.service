@@ -8,6 +8,7 @@ ExecStart=/usr/bin/geth -${NETWORK} --syncmode fast --rpc --rpcport 8545 --rpcap
 Restart=on-failure
 User=x2go
 Group=users
+LimitNICE=+10
 
 [Install]
 WantedBy=multi-user.target

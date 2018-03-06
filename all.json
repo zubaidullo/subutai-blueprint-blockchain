@@ -109,7 +109,7 @@
             {
                 "name": "install mist",
                 "apt": {
-                    "deb": "https://github.com/ethereum/mist/releases/download/v0.9.3/Ethereum-Wallet-linux64-0-9-3.deb"
+                    "deb": "https://github.com/ethereum/mist/releases/download/v0.9.3/Mist-linux64-0-9-3.deb"
                 }
             },
             {
