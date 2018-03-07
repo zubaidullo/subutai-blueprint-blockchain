@@ -15,6 +15,13 @@
                 }
             },
             {
+                "name": "install aptitude",
+                "apt": {
+                    "name": "aptitude",
+                    "allow_unauthenticated": "yes"
+                }
+            },
+            {
                 "name": "install dirmngr",
                 "apt": {
                     "name": "dirmngr",
@@ -104,8 +111,7 @@
                 "apt": {
                     "name": "mate-desktop",
                     "state": "installed",
-                    "allow_unauthenticated": "yes",
-                    "update_cache": "no"
+                    "allow_unauthenticated": "yes"
                 }
             },
             {
@@ -113,8 +119,7 @@
                 "apt": {
                     "name": "x2goserver",
                     "state": "installed",
-                    "allow_unauthenticated": "yes",
-                    "update_cache": "no"
+                    "allow_unauthenticated": "yes"
                 }
             },
             {
@@ -122,8 +127,7 @@
                 "apt": {
                     "name": "mate-session-manager",
                     "state": "installed",
-                    "allow_unauthenticated": "yes",
-                    "update_cache": "no"
+                    "allow_unauthenticated": "yes"
                 }
             },
             {
@@ -131,8 +135,7 @@
                 "apt": {
                     "name": "mate-applets",
                     "state": "installed",
-                    "allow_unauthenticated": "yes",
-                    "update_cache": "no"
+                    "allow_unauthenticated": "yes"
                 }
             },
             {
@@ -140,8 +143,7 @@
                 "apt": {
                     "name": "mate-backgrounds",
                     "state": "installed",
-                    "allow_unauthenticated": "yes",
-                    "update_cache": "no"
+                    "allow_unauthenticated": "yes"
                 }
             },
             {
@@ -149,8 +151,7 @@
                 "apt": {
                     "name": "mate-control-center",
                     "state": "installed",
-                    "allow_unauthenticated": "yes",
-                    "update_cache": "no"
+                    "allow_unauthenticated": "yes"
                 }
             },
             {
@@ -158,8 +159,7 @@
                 "apt": {
                     "name": "mate-desktop-environment",
                     "state": "installed",
-                    "allow_unauthenticated": "yes",
-                    "update_cache": "no"
+                    "allow_unauthenticated": "yes"
                 }
             },
             {
@@ -167,8 +167,7 @@
                 "apt": {
                     "name": "dconf-cli",
                     "state": "installed",
-                    "allow_unauthenticated": "yes",
-                    "update_cache": "no"
+                    "allow_unauthenticated": "yes"
                 }
             },
             {
@@ -176,8 +175,7 @@
                 "apt": {
                     "name": "ethereum",
                     "state": "installed",
-                    "allow_unauthenticated": "yes",
-                    "update_cache": "no"
+                    "allow_unauthenticated": "yes"
                 }
             },
             {
@@ -185,8 +183,7 @@
                 "apt": {
                     "name": "nodejs",
                     "state": "installed",
-                    "allow_unauthenticated": "yes",
-                    "update_cache": "no"
+                    "allow_unauthenticated": "yes"
                 }
             },
             {
@@ -194,8 +191,7 @@
                 "apt": {
                     "name": "code",
                     "state": "installed",
-                    "allow_unauthenticated": "yes",
-                    "update_cache": "no"
+                    "allow_unauthenticated": "yes"
                 }
             },
             {
@@ -203,8 +199,7 @@
                 "apt": {
                     "name": "git",
                     "state": "installed",
-                    "allow_unauthenticated": "yes",
-                    "update_cache": "no"
+                    "allow_unauthenticated": "yes"
                 }
             },
             {
@@ -212,8 +207,7 @@
                 "apt": {
                     "name": "firefox-esr",
                     "state": "installed",
-                    "allow_unauthenticated": "yes",
-                    "update_cache": "no"
+                    "allow_unauthenticated": "yes"
                 }
             },
             {

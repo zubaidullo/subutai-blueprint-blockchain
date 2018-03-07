@@ -8,9 +8,10 @@
     var app = angular.module(appName, [
         "ngRoute",
         "app-header-directive",
+        "app-sidebar-directive", 
         "app-main-directive",
         "app-footer-directive",
-        "home-route"
+        "static-route"
     ]);
 
 })();

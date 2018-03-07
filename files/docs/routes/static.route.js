@@ -1,15 +1,18 @@
 /*
- * Route: home
+ * Static Routes
  */
 (function () {
 
-    var module = angular.module("home-route", []);
+    var module = angular.module("static-route", []);
 
     module.config(["$routeProvider",
         function ($routeProvider) {
             $routeProvider
                 .when("/", {
                     templateUrl: "views/home.html"
+                })
+                .when("/about", {
+                    templateUrl: "views/about.html"
                 })
                 .otherwise({
                     redirectTo: "/"
