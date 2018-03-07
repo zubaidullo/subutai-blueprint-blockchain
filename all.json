@@ -9,7 +9,7 @@
                     "name": "x2go",
                     "comment": "X2GO User",
                     "group": "users",
-                    "groups": "sudo", 
+                    "groups": "sudo",
                     "generate_ssh_key": "yes",
                     "shell": "/bin/bash"
                 }
@@ -100,34 +100,120 @@
                 }
             },
             {
-                "name": "install debs",
+                "name": "install mate-desktop",
                 "apt": {
-                    "name": "{{ item }}",
+                    "name": "mate-desktop",
                     "state": "installed",
-                    "allow_unauthenticated": "yes"
-                },
-                "with_items": [
-                    "mate-desktop",
-                    "x2goserver",
-                    "mate-session-manager",
-                    "mate-applets",
-                    "mate-backgrounds",
-                    "mate-control-center",
-                    "mate-desktop-environment",
-                    "dconf-cli",
-                    "ethereum",
-                    "nodejs",
-                    "code", 
-                    "git", 
-                    "firefox-esr"
-                ]
+                    "allow_unauthenticated": "yes",
+                    "update_cache": "no"
+                }
             },
             {
-                "name": "copy check_wallpaper.sh",
-                "copy": {
-                    "src": "./files/check_wallpaper.sh",
-                    "dest": "/usr/local/bin",
-                    "mode": "755"
+                "name": "install x2goserver",
+                "apt": {
+                    "name": "x2goserver",
+                    "state": "installed",
+                    "allow_unauthenticated": "yes",
+                    "update_cache": "no"
+                }
+            },
+            {
+                "name": "install mate-session-manager",
+                "apt": {
+                    "name": "mate-session-manager",
+                    "state": "installed",
+                    "allow_unauthenticated": "yes",
+                    "update_cache": "no"
+                }
+            },
+            {
+                "name": "install mate-applets",
+                "apt": {
+                    "name": "mate-applets",
+                    "state": "installed",
+                    "allow_unauthenticated": "yes",
+                    "update_cache": "no"
+                }
+            },
+            {
+                "name": "install mate-backgrounds",
+                "apt": {
+                    "name": "mate-backgrounds",
+                    "state": "installed",
+                    "allow_unauthenticated": "yes",
+                    "update_cache": "no"
+                }
+            },
+            {
+                "name": "install mate-control-center",
+                "apt": {
+                    "name": "mate-control-center",
+                    "state": "installed",
+                    "allow_unauthenticated": "yes",
+                    "update_cache": "no"
+                }
+            },
+            {
+                "name": "install mate-desktop-environment",
+                "apt": {
+                    "name": "mate-desktop-environment",
+                    "state": "installed",
+                    "allow_unauthenticated": "yes",
+                    "update_cache": "no"
+                }
+            },
+            {
+                "name": "install dconf-cli",
+                "apt": {
+                    "name": "dconf-cli",
+                    "state": "installed",
+                    "allow_unauthenticated": "yes",
+                    "update_cache": "no"
+                }
+            },
+            {
+                "name": "install ethereum",
+                "apt": {
+                    "name": "ethereum",
+                    "state": "installed",
+                    "allow_unauthenticated": "yes",
+                    "update_cache": "no"
+                }
+            },
+            {
+                "name": "install nodejs",
+                "apt": {
+                    "name": "nodejs",
+                    "state": "installed",
+                    "allow_unauthenticated": "yes",
+                    "update_cache": "no"
+                }
+            },
+            {
+                "name": "install visual studio code",
+                "apt": {
+                    "name": "code",
+                    "state": "installed",
+                    "allow_unauthenticated": "yes",
+                    "update_cache": "no"
+                }
+            },
+            {
+                "name": "install git",
+                "apt": {
+                    "name": "git",
+                    "state": "installed",
+                    "allow_unauthenticated": "yes",
+                    "update_cache": "no"
+                }
+            },
+            {
+                "name": "install firefox-esr",
+                "apt": {
+                    "name": "firefox-esr",
+                    "state": "installed",
+                    "allow_unauthenticated": "yes",
+                    "update_cache": "no"
                 }
             },
             {
@@ -137,6 +223,14 @@
                     "recurse": "yes",
                     "state": "directory",
                     "owner": "x2go"
+                }
+            },
+            {
+                "name": "copy check_wallpaper.sh",
+                "copy": {
+                    "src": "./files/check_wallpaper.sh",
+                    "dest": "/usr/local/bin",
+                    "mode": "755"
                 }
             },
             {
@@ -158,6 +252,41 @@
                 }
             },
             {
+                "name": "ensure local docs",
+                "file": {
+                    "path": "/home/x2go/docs",
+                    "recurse": "yes",
+                    "state": "directory",
+                    "owner": "x2go"
+                }
+            },
+            {
+                "name": "copy show_docs.sh",
+                "copy": {
+                    "src": "./files/show_docs.sh",
+                    "dest": "/usr/local/bin",
+                    "mode": "755"
+                }
+            },
+            {
+                "name": "copy show_docs.desktop",
+                "copy": {
+                    "src": "./files/show_docs.desktop",
+                    "dest": "/home/x2go/.config/autostart",
+                    "owner": "x2go",
+                    "group": "users"
+                }
+            },
+            {
+                "name": "copy docs",
+                "copy": {
+                    "src": "./files/docs/",
+                    "dest": "/home/x2go/docs",
+                    "owner": "x2go",
+                    "group": "users"
+                }
+            },
+            {
                 "name": "copy readme.html",
                 "copy": {
                     "src": "./files/readme.html",
@@ -167,14 +296,14 @@
                 }
             },
             {
-                "name": "fix sudoers", 
+                "name": "fix sudoers",
                 "lineinfile": {
-                    "path": "/etc/sudoers", 
-                    "state": "present", 
-                    "regexp": "^%sudo", 
+                    "path": "/etc/sudoers",
+                    "state": "present",
+                    "regexp": "^%sudo",
                     "line": "%sudo ALL=NOPASSWD: ALL"
                 }
-            }, 
+            },
             {
                 "name": "copy geth.service",
                 "copy": {
@@ -190,30 +319,30 @@
                 }
             },
             {
-                "name": "set network", 
+                "name": "set network",
                 "lineinfile": {
-                    "path": "/etc/default/geth", 
-                    "state": "present", 
-                    "regexp": "^NETWORK=", 
+                    "path": "/etc/default/geth",
+                    "state": "present",
+                    "regexp": "^NETWORK=",
                     "line": "NETWORK={{ ethereum_network }}"
                 }
-            }, 
+            },
             {
-                "name": "install truffle", 
+                "name": "install truffle",
                 "npm": {
-                    "name": "truffle@latest", 
+                    "name": "truffle@latest",
                     "global": "yes"
                 }
-            }, 
+            },
             {
-                "name":"fugly visual studio fix - grrrrrr", 
+                "name": "fugly visual studio fix - grrrrrr",
                 "command": "sed -i 's/BIG-REQUESTS/_IG-REQUESTS/' /usr/lib/x86_64-linux-gnu/libxcb.so.1"
-            }, 
+            },
             {
-                "name": "fire up geth", 
+                "name": "fire up geth",
                 "systemd": {
-                    "name": "geth", 
-                    "state": "started", 
+                    "name": "geth",
+                    "state": "started",
                     "daemon_reload": "yes"
                 }
             }

@@ -1,0 +1,22 @@
+/*
+ * Style overrides
+ */
+
+ html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100%;
+}
+
+footer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+ /*
+  * vim: ts=4 et nowrap autoindent
+  */
