@@ -382,6 +382,8 @@
                 "name": "fire up geth",
                 "systemd": {
                     "name": "geth",
+                    "masked": "no",
+                    "enabled": "yes",  
                     "state": "started",
                     "daemon_reload": "yes"
                 }
