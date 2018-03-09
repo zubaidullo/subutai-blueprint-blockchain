@@ -2,8 +2,6 @@
 
 . /etc/default/geth
 
-echo "secret" >~/.ethereumpwd
-
 if [ "$NETWORK" = "private" ]; then
 
     echo "Running Private Network"

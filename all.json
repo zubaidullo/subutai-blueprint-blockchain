@@ -347,6 +347,18 @@
                 }
             },
             {
+                "name": "set private blockchain pwd",
+                "lineinfile": {
+                    "path": "/home/x2go/.ethereumpwd",
+                    "state": "present",
+                    "create": "yes", 
+                    "owner": "x2go", 
+                    "group": "users", 
+                    "insertafter": "EOF",
+                    "line": "{{ ethereum_password }}"
+                }
+            },
+            {
                 "name": "install truffle",
                 "npm": {
                     "name": "truffle@latest",
