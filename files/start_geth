@@ -2,5 +2,63 @@
 
 . /etc/default/geth
 
-/usr/bin/geth -${NETWORK} --syncmode fast --rpc --rpcport 8545 --rpcapi db,eth,net,web3,personal 
+echo "secret" >~/.ethereumpwd
 
+if [ "$NETWORK" = "private" ]; then
+
+    echo "Running Private Network"
+
+    if [ -n "$NETWORK_ID" ]; then
+
+        # Check if .ethereum exists
+        [ -d ~/.ethereum ] || mkdir ~/.ethereum
+
+        # Check if generis file has been generated
+        if [ ! -f ~/.ethereum/genesis.json ]; then
+
+cat <<-EOF  >~/.ethereum/genesis.json 
+    {
+        "config": {
+            "chainId": $NETWORK_ID,
+            "homesteadBlock": 0,
+            "eip155Block": 0,
+            "eip158Block": 0
+        },
+        "difficulty": "0x400",
+        "gasLimit": "0x8000000",
+        "alloc": {}
+    }
+EOF
+        fi
+
+        # Check if .ethereum/private exists
+        [ -d ~/.ethereum/private ] || mkdir ~/.ethereum/private
+
+        # Check if chain has been created
+        if [ ! -d ~/.ethereum/private/geth ]; then
+            echo "Create private blockchain"
+            geth --identity "$NETWORK" --datadir ~/.ethereum/$NETWORK init ~/.ethereum/genesis.json
+        fi
+
+        # Check if account exists
+        ACCOUNT_0=`geth --networkid $NETWORK_ID --datadir ~/.ethereum/$NETWORK account list 2>/dev/null`
+        if [ -z "$ACCOUNT_0"]; then
+            geth --networkid $NETWORK_ID --datadir ~/.ethereum/$NETWORK account new --password ~/.ethereumpwd 2>/dev/null
+        fi
+
+        # Finally run geth with miner
+        nice -n 10 geth --networkid $NETWORK_ID --datadir ~/.ethereum/$NETWORK --rpc --rpcport 8545 --rpcapi db,eth,net,web3,personal --verbosity 3 --mine --minerthreads 1
+
+    else 
+        echo "Private network with no ID?"
+        exit 100
+    fi
+
+else
+
+    echo "Running Test Network"
+
+    /usr/bin/geth -${NETWORK} --syncmode fast --rpc --rpcport 8545 --rpcapi db,eth,net,web3,personal 
+
+fi
+# vim: ts=4 et nowrap autoindent
