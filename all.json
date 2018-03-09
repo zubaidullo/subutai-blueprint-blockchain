@@ -220,6 +220,15 @@
                 }
             },
             {
+                "name": "ensure local Desktop",
+                "file": {
+                    "path": "/home/x2go/Desktop",
+                    "recurse": "yes",
+                    "state": "directory",
+                    "owner": "x2go"
+                }
+            },
+            {
                 "name": "copy check_wallpaper.sh",
                 "copy": {
                     "src": "./files/check_wallpaper.sh",
@@ -281,10 +290,10 @@
                 }
             },
             {
-                "name": "copy readme.html",
+                "name": "copy Mist.desktop",
                 "copy": {
-                    "src": "./files/readme.html",
-                    "dest": "/home/x2go",
+                    "src": "./files/Mist.desktop",
+                    "dest": "/home/x2go/Desktop",
                     "owner": "x2go",
                     "group": "users"
                 }
@@ -316,7 +325,7 @@
                 "name": "copy start_geth",
                 "copy": {
                     "src": "./files/start_geth",
-                    "dest": "/usr/local/start_geth",
+                    "dest": "/usr/local/bin/start_geth",
                     "mode": "755"
                 }
             },

@@ -1,0 +1,13 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Icon[C]=ru
+Name[C]=Mist
+Exec=/usr/local/bin/run_mist
+Comment[C]=Launch Mist
+Name=Mist
+Comment=Launch Mist
+Icon=/usr/share/icons/mate/32x32/status/connect_creating.png
