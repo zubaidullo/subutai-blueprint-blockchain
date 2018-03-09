@@ -57,7 +57,7 @@
             "description": "Select ethereum network",
             "type": "enum",
             "default": "testnet",
-            "validation": "testnet,rinkeby"
+            "validation": ",testnet,rinkeby"
         }, 
         "ethereumNetworkId": {
             "description": "Enter private blockchain ID (overrides network!)",
