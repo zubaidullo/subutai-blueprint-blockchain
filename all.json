@@ -325,7 +325,7 @@
                 "name": "copy start_geth",
                 "copy": {
                     "src": "./files/start_geth",
-                    "dest": "/usr/local/bin/start_geth",
+                    "dest": "/usr/local/sbin/start_geth",
                     "mode": "755"
                 }
             },
@@ -333,7 +333,7 @@
                 "name": "copy run_mist",
                 "copy": {
                     "src": "./files/run_mist",
-                    "dest": "/usr/local/run_mist",
+                    "dest": "/usr/local/bin/run_mist",
                     "mode": "755"
                 }
             },
