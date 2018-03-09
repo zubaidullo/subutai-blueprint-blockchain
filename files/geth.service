@@ -4,7 +4,7 @@ Description=Run Geth
 [Service]
 Type=simple
 EnvironmentFile=-/etc/default/geth
-ExecStart=/usr/bin/geth -${NETWORK} --syncmode fast --rpc --rpcport 8545 --rpcapi db,eth,net,web3,personal 
+ExecStart=/usr/local/sbin/start_geth
 Restart=on-failure
 User=x2go
 Group=users

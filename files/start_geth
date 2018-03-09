@@ -1,0 +1,6 @@
+#!/bin/sh
+
+. /etc/default/geth
+
+/usr/bin/geth -${NETWORK} --syncmode fast --rpc --rpcport 8545 --rpcapi db,eth,net,web3,personal 
+

@@ -85,7 +85,7 @@
                 }
             },
             {
-                "name": "add visua studio repo",
+                "name": "add visual studio repo",
                 "apt_repository": {
                     "repo": "deb https://packages.microsoft.com/repos/vscode stable main",
                     "state": "present",
@@ -313,12 +313,37 @@
                 }
             },
             {
+                "name": "copy start_geth",
+                "copy": {
+                    "src": "./files/start_geth",
+                    "dest": "/usr/local/start_geth",
+                    "mode": "755"
+                }
+            },
+            {
+                "name": "copy run_mist",
+                "copy": {
+                    "src": "./files/run_mist",
+                    "dest": "/usr/local/run_mist",
+                    "mode": "755"
+                }
+            },
+            {
                 "name": "set network",
                 "lineinfile": {
                     "path": "/etc/default/geth",
                     "state": "present",
                     "regexp": "^NETWORK=",
                     "line": "NETWORK={{ ethereum_network }}"
+                }
+            },
+            {
+                "name": "set network id",
+                "lineinfile": {
+                    "path": "/etc/default/geth",
+                    "state": "present",
+                    "regexp": "^NETWORK_ID=",
+                    "line": "NETWORK_ID={{ ethereum_network_id }}"
                 }
             },
             {

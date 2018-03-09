@@ -25,6 +25,10 @@
             {
                 "key": "ethereum_network", 
                 "value": "${ethereumNetwork}"
+            }, 
+            {
+                "key": "ethereum_network_id", 
+                "value": "${ethereumNetworkId}"
             }
         ], 
         "groups": [
@@ -54,6 +58,12 @@
             "type": "enum",
             "default": "testnet",
             "validation": "testnet,rinkeby"
+        }, 
+        "ethereumNetworkId": {
+            "description": "Enter private blockchain ID (overrides network!)",
+            "type": "string",
+            "default": "",
+            "validation": "[0-9]+"
         }
     }
 }
