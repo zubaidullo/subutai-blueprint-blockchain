@@ -40,11 +40,13 @@ EOF
 
         # Check if account exists
         ACCOUNT_0=`geth --networkid $NETWORK_ID --datadir ~/.ethereum/$NETWORK account list 2>/dev/null`
-        if [ -z "$ACCOUNT_0"]; then
+        if [ -z "$ACCOUNT_0" ]; then
+            echo "Creating new account"
             geth --networkid $NETWORK_ID --datadir ~/.ethereum/$NETWORK account new --password ~/.ethereumpwd 2>/dev/null
         fi
 
         # Finally run geth with miner
+        echo "Firing up geth in private mode"
         nice -n 10 geth --networkid $NETWORK_ID --datadir ~/.ethereum/$NETWORK --rpc --rpcport 8545 --rpcapi db,eth,net,web3,personal --verbosity 3 --mine --minerthreads 1
 
     else 
@@ -54,8 +56,7 @@ EOF
 
 else
 
-    echo "Running Test Network"
-
+    echo "Firing up geth in testnet mode"
     /usr/bin/geth -${NETWORK} --syncmode fast --rpc --rpcport 8545 --rpcapi db,eth,net,web3,personal 
 
 fi
