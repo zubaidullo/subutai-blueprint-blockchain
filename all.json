@@ -311,7 +311,7 @@
                 "name": "copy geth.service",
                 "copy": {
                     "src": "./files/geth.service",
-                    "dest": "/etc/systemd/system"
+                    "dest": "/lib/systemd/system"
                 }
             },
             {
